@@ -1,0 +1,1490 @@
+@font-face {
+    font-family: Inter;
+    src: url("Fonts/Inter/Inter-Regular.ttf");
+}
+
+@font-face {
+    font-family: Tight;
+    src: url("Fonts/Inter/InterTight-Regular.ttf");
+    unicode-range: U+0030-0039;
+}
+
+html {
+    /* width: 100vw; */
+    /* height: 100vh; */
+    font-size: 16px;
+}
+
+body *, body {
+    font-family: Tight, Inter, serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-variant-numeric: tabular-nums;
+    transition-property: background-color, background-image, border-color;
+    transition-duration: var(--transition-all);
+}
+
+body { /* Default color variables */
+    --background-color: #030012;
+    --window-color: #12121c;
+    --window-border: cornflowerblue;
+    --footer-color: darkblue;
+    --button-color: mediumblue;
+    --button-border: darkcyan;
+    --button-hover: #2626ff;
+    --building-afford: #a90000;
+    --tab-active: #8b00c5;
+    --tab-elements: #9f6700;
+    --tab-strangeness: #00b100;
+    --hollow-hover: #170089;
+    --footerButton-hover: #181818;
+    --input-border: #831aa5;
+    --input-text: #cf71ff;
+    --button-text: #e3e3e3;
+    --main-text: var(--cyan-text);
+    --white-text: white;
+    --cyan-text: #03d3d3;
+    --blue-text: dodgerblue;
+    --orange-text: darkorange;
+    --gray-text: #8f8f8f;
+    --orchid-text: #e14bdb;
+    --darkorchid-text: #bd24ef;
+    --darkviolet-text: #8635eb;
+    --red-text: #eb0000;
+    --green-text: #00e900;
+    --yellow-text: #fafa00; /* Rename into select-text, if consistent yellow text will be added */
+
+    /* These colors need to be changed in multiple places:
+        --window-color > ".stage1windowBackground";
+        --button-border > ".stage1borderButton" and "--stage-button-border", and "global.stageInfo.buttonBorder[1]"; */
+    --transition-all: 0s;
+    --transition-buttons: 100ms;
+    --stage-text: var(--cyan-text);
+    --stage-button-border: darkcyan;
+    --stage-image-borderColor: #008b8b;
+    --image-border: url("Used_art/Stage1 border.png");
+
+    /* Other */
+    color: var(--main-text);
+    background-color: var(--background-color);
+    overscroll-behavior: none;
+    overflow-y: overlay;
+    overflow-anchor: none;
+    touch-action: manipulation;
+}
+
+.stageText { color: var(--stage-text); }
+.mainText { color: var(--main-text); }
+.whiteText { color: var(--white-text); }
+.cyanText { color: var(--cyan-text); }
+.blueText { color: var(--blue-text); }
+.orangeText { color: var(--orange-text); }
+.grayText { color: var(--gray-text); }
+.orchidText { color: var(--orchid-text); }
+.darkorchidText { color: var(--darkorchid-text); }
+.darkvioletText { color: var(--darkviolet-text); }
+.redText { color: var(--red-text); }
+.greenText { color: var(--green-text); }
+.yellowText { color: var(--yellow-text); }
+
+/* These colors are same as Image border outer layer */
+.stage0borderImage { border-color: #006400 !important; }
+.stage1borderImage { border-color: #008b8b !important; }
+.stage2borderImage { border-color: #1460a8 !important; }
+.stage3borderImage { border-color: #5b5b75 !important; }
+.stage4borderImage { border-color: #e87400 !important; }
+.stage5borderImage { border-color: #b324e2 !important; }
+.stage6borderImage { border-color: #5300c1 !important; }
+.stage7borderImage { border-color: #b21111 !important; }
+.stageAllborderImage { border-color: var(--stage-image-borderColor) !important; }
+
+/* These colors are shared with --button-border */
+.stage1borderButton { border-color: darkcyan !important; }
+.stage2borderButton { border-color: #386cc7 !important; }
+.stage3borderButton { border-color: #424242 !important; }
+.stage4borderButton { border-color: #a35700 !important; }
+.stage5borderButton { border-color: #8f004c !important; }
+.stage6borderButton { border-color: #6c1ad1 !important; }
+.stageAllborderButton { border-color: var(--stage-button-border) !important; }
+
+/* These colors are shared with --window-color */
+.stage1windowBackground { background-color: #12121c !important; }
+.stage2windowBackground { background-color: #000052 !important; }
+.stage3windowBackground { background-color: #2e1200 !important; }
+.stage4windowBackground { background-color: #4e0000 !important; }
+.stage5windowBackground { background-color: #001d42 !important; }
+.stage6windowBackground { background-color: #01003c !important; }
+
+/* Right now it works only with keyboard tab button */
+body.noFocusOutline button, body.noFocusOutline .noFocusOutline,
+body.noFocusOutline input:not(input[type = "text"], input[type = "number"]) { outline: none; }
+
+::-webkit-scrollbar {
+    width: 1.2vh;
+    height: 1.2vh;
+}
+
+body::-webkit-scrollbar-corner,
+body::-webkit-scrollbar:horizontal { background-color: var(--footer-color); }
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--input-border);
+    box-shadow: inset 0 0 0.2vh black;
+    border: 0.2vh solid #0000;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    border-top: none;
+    border-bottom: none;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+    border-left: none;
+    border-right: none;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner { background-color: #0000; }
+::-webkit-scrollbar-button { display: none; }
+::-webkit-resizer { background-image: url("Used_art/SVG/Resize.svg"); }
+
+input[type = "image"],
+img {
+    background-color: var(--background-color);
+    object-fit: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    image-rendering: pixelated;
+
+    /* For alt text */
+    color: white;
+    font-size: 0.66rem;
+}
+
+#footerStats img,
+#strangenessResearch .interactiveImage,
+#researches .interactiveImage {
+    border-radius: 3px;
+    z-index: 2;
+}
+
+p > img {
+    float: left;
+    margin: 0.5em 0.5em 0 0.2em;
+}
+
+.interactiveImage { cursor: pointer; }
+
+.stageBorderImage {
+    background-image: var(--image-border);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#MDMessage1 { display: none; }
+
+.reader { /* For screen readers */
+    position: absolute;
+    clip-path: circle(0);
+    pointer-events: none;
+}
+
+.bigWord { font-size: 1.1em; }
+.biggerWord { font-size: 1.2em; }
+
+a { color: red; }
+.center { text-align: center; }
+.fullWidth { width: 100%; }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    cursor: default;
+}
+
+#loading > p { padding: 0.5em 2vw; }
+
+#loading, #blocker, #versionInfo {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#blocker, #versionInfo {
+    z-index: 10;
+    background-color: #00000050;
+}
+
+#alertMain {
+    display: flex;
+    flex-direction: column;
+    width: clamp(24vw, 24rem, 80vw);
+    height: clamp(18vh, 20rem, 90vh);
+    background-color: var(--window-color);
+    border: 2px solid var(--window-border);
+    border-radius: 10px;
+    padding: 0.7em 0.8em 0.9em;
+    row-gap: 0.7em;
+}
+
+#alertText {
+    white-space: pre-line;
+    overflow: clip auto;
+    overflow-wrap: break-word;
+}
+
+#alertMain > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: auto;
+    gap: 0.8em 10%;
+}
+
+#alertMain button {
+    width: 7em;
+    border-radius: 7px;
+}
+
+#alertInput {
+    width: 100%;
+    height: 2em;
+    margin: 0 1em;
+    background-color: black;
+}
+
+#warpMain {
+    width: 39rem;
+    max-width: 94vw;
+    background-color: var(--window-color);
+    border: 2px solid var(--window-border);
+    border-radius: 10px;
+    padding: 0.6em 0.6em 0.7em;
+}
+
+#notifications {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    overflow: hidden auto;
+    right: 0;
+    top: 1vh;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#notifications > p {
+    color: var(--white-text);
+    background-color: var(--window-color);
+    border: 2px solid var(--window-border);
+    border-left-width: 1px;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    padding: 0.2em 0.4em;
+    text-align: center;
+    white-space: pre-line;
+    width: clamp(25vw, 28rem, 95vw);
+    overflow-wrap: break-word;
+    pointer-events: auto;
+    user-select: none;
+    cursor: pointer;
+}
+
+#notifications > p:not(:first-of-type) { margin-top: -1px; }
+
+button, input { appearance: none; }
+
+#load, button {
+    height: 2.08em;
+    cursor: pointer;
+    background-color: var(--button-color);
+    border: 2px solid var(--button-border);
+    color: var(--button-text);
+    font-size: 0.84em;
+}
+
+.toggleConfirm, .toggleBuilding, .toggleHover, .toggleMax, .toggleAuto, .specialToggle {
+    color: var(--green-text);
+    border-color: forestgreen;
+    background-color: var(--background-color);
+}
+
+.specialToggle {
+    width: 2.8em;
+    height: 1.63em;
+}
+
+.toggleHover, .toggleMax {
+    height: 1.63em;
+    font-size: 0.92em;
+}
+
+.toggleHover { width: 10.6em; }
+.toggleMax { width: 8.4em; }
+
+.toggleAuto {
+    width: 5.4em;
+    height: 1.78em;
+}
+
+.hollowButton { background-color: var(--background-color); }
+
+img, input[type = "image"], button, #load, a {
+    user-select: none;
+    transition-duration: var(--transition-buttons);
+}
+
+/* I could add :hover:not(:active), to make it visible that you are clicking, but that or other 10+ animations looked really awkward... */
+button:hover, #load:hover { background-color: var(--button-hover); }
+.toggleConfirm:hover, .toggleBuilding:hover, .toggleHover:hover, .toggleMax:hover, .toggleAuto:hover,
+.specialToggle:hover, .interactiveImage:hover, .hollowButton:hover { background-color: var(--hollow-hover); }
+
+input[type = "number"] { appearance: textfield; }
+input[type = "number"]::-webkit-inner-spin-button, input[type = "number"]::-webkit-outer-spin-button { appearance: none; }
+
+input[type = "number"],
+input[type = "text"] {
+    text-align: center;
+    border: 2px solid var(--input-border);
+    border-radius: 2px;
+    color: var(--input-text);
+    background-color: var(--background-color);
+    width: 5.4em;
+    height: 1.7em;
+    font-size: 0.84em;
+    padding: 0.1em 0.2em;
+    font-family: Inter, serif;
+    font-variant-numeric: normal;
+}
+
+input:-webkit-autofill { /* Chrome related pain */
+    -webkit-box-shadow: inset 0 0 0 20px var(--background-color);
+    -webkit-text-fill-color: var(--input-text);
+}
+
+.insideTab {
+    margin-top: min(2vh, 1rem);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: start;
+    gap: 1.6em;
+}
+
+#resets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: min-content;
+    width: 100%;
+    gap: 1.2em;
+}
+
+#resets > section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 18.8em;
+    padding: 0.8em 1.05em 1.05em;
+    row-gap: 0.95em;
+    background-color: var(--window-color);
+    border: 2px solid var(--window-border);
+}
+
+#resets button:not(#stageReset) {
+    width: 15.5em;
+    height: 2.2em;
+    font-size: 0.86em;
+    margin-top: auto;
+}
+
+#stageReset {
+    width: 12em;
+    height: 2.2em;
+    font-size: 1em;
+}
+
+#buildings {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.44em;
+}
+
+#specials {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: space-around;
+}
+
+#specials > div {
+    display: flex;
+    align-items: center;
+    column-gap: 0.3em;
+}
+
+#specials p {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.3em;
+    font-size: 0.92em;
+}
+
+.buyBuilding {
+    display: flex;
+    align-items: center;
+    column-gap: 0.3em;
+}
+
+.buyBuilding > img, #specials img { margin-right: 0.3em; }
+
+.buyBuilding > div:first-of-type {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.3em;
+}
+
+.buyBuilding > div:last-of-type {
+    display: grid;
+    grid-template-areas: "buy button toggle";
+    align-items: center;
+}
+
+.buyBuilding > div > p:first-of-type { width: 19.4em; }
+.buyBuilding > div > p:first-of-type > span.whiteText { padding-right: 0.06em; }
+.buyBuilding > div > p:last-of-type { width: 10.6em; }
+
+.buyBuilding > div > div {
+    grid-area: buy;
+    display: flex;
+    align-items: center;
+}
+
+.buyBuilding > div > div > p {
+    width: 5.8em;
+    font-size: 0.92em;
+    text-align: end;
+}
+
+.buyBuilding > div > div > div {
+    width: 1em;
+    height: 1.4em;
+    clip-path: polygon(100% 100%, 90% 100%, 90% 75%, 0% 50%, 90% 25%, 60% 50%, 90% 75%, 90% 0%, 100% 0%);
+    background-color: var(--button-border);
+    margin: 0 0.3em;
+}
+
+.buyBuilding button:first-of-type {
+    grid-area: button;
+    width: 15em;
+}
+
+.toggleBuilding {
+    width: 5.8em;
+    height: 1.95em;
+}
+
+.buyBuilding .toggleBuilding {
+    grid-area: toggle;
+    margin-left: 0.4em;
+}
+
+.availableBuilding button:first-of-type { border-color: var(--building-afford); }
+.availableBuilding > div > div > div { background-color: var(--building-afford); }
+
+#buildingToggles {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    column-gap: 0.3em;
+}
+
+#makeAllStructures {
+    height: 1.8em;
+    padding: 0 0.4em;
+    border-radius: 2px;
+}
+
+#autoWaitInput,
+#buyAnyInput {
+    height: 1.88em;
+    margin-left: 0.3em;
+}
+
+.labelPopUp { position: relative; }
+
+.labelPopUp > label {
+    display: none;
+    text-align: center;
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    background-color: var(--window-color);
+    border: 2px solid var(--window-border);
+    border-radius: 8px;
+    width: max-content;
+    max-width: min(60vw, 26em);
+    padding: 0.3em 0.8em 0.5em;
+    margin-top: 0.38em;
+    /* No idea how to prevent it from going off screen */
+}
+
+.labelPopUp:focus-within > label { display: block; }
+
+#toggleBuilding0 { margin-left: 0.3em; }
+
+#stageInfo {
+    text-align: center;
+    width: 100%;
+}
+
+#stageInfo > div {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.3em;
+}
+
+#starEffects {
+    width: max-content;
+    align-self: center;
+    cursor: help;
+}
+
+#starEffects:hover > p > span:first-of-type { display: none; }
+#starEffects:not(:hover) > p > span:last-of-type { display: none; }
+
+#timeInfo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    row-gap: 0.1em;
+    width: 100%;
+}
+
+#challengesMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.6em;
+}
+
+#challengesMain .interactiveImage {
+    width: 48px;
+    height: 48px;
+    border-radius: 0;
+}
+
+#challengesMain > div:first-of-type {
+    display: flex;
+    gap: 0.44em;
+}
+
+#challengeMultiline { text-align: center; }
+#challengeMultiline p { white-space: pre-line; }
+#challengeMultiline > div { margin-top: 1.2em; }
+
+#voidRewards > h3 {
+    text-align: center;
+    margin-top: 0.6em;
+    margin-bottom: 0.3em;
+}
+
+#voidRewards button {
+    height: 1.9em;
+    padding: 0 0.4em;
+    border-radius: 4px;
+}
+
+#voidRewards > div:first-of-type {
+    display: flex;
+    gap: 0.3em;
+}
+
+#voidRewardsDiv {
+    display: none;
+    position: absolute;
+    transform: translateX(50%);
+    right: 50%;
+    background-color: var(--window-color);
+    border: 2px solid var(--window-border);
+    border-radius: 11px;
+    width: max-content;
+    padding: 0.6em 0.8em 0.7em;
+    margin-top: 0.8em;
+    user-select: none;
+}
+
+#voidRewards:focus-within > #voidRewardsDiv { display: block; }
+
+#voidRewardsDivText {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.25em;
+    margin-top: 0.3em;
+}
+
+#advancedInfo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    row-gap: 0.3em;
+    width: 100%;
+}
+
+#upgrades, #researches {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    row-gap: 0.5em;
+    margin-bottom: -0.4em;
+}
+
+#upgrades > section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: var(--window-color);
+    border: 2px solid var(--stage-image-borderColor);
+    border-radius: 4px;
+    padding: 0.4em;
+    gap: 0.4em;
+}
+
+#researches > section {
+    display: flex;
+    align-items: center;
+    margin-left: -32px;
+}
+
+#researches > section:not(:last-of-type) { margin-bottom: 0.4em; }
+
+#researches > section > div {
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid var(--stage-image-borderColor);
+    border-left-width: 1px;
+    border-radius: 4px;
+    padding: 0.25em;
+    margin-left: -1px;
+    gap: 0.5em;
+    background-color: var(--window-color);
+}
+
+#researches p {
+    display: flex;
+    align-items: center;
+    border: 2px solid;
+    border-color: inherit;
+    border-left: none;
+    padding-left: calc(3px + 0.25em);
+    padding-right: 0.25em;
+    background-color: var(--background-color);
+    margin-left: -3px;
+    height: 32px;
+    user-select: none;
+}
+
+#researches div > div { display: flex; }
+
+#researchBottomDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.6em;
+    width: 100%;
+}
+
+.descriptionText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    row-gap: 0.3em;
+    white-space: pre-line;
+}
+
+.descriptionText > h3,
+.descriptionText > p { max-width: 80%; }
+
+#researchToggles {
+    display: flex;
+    align-items: center;
+    column-gap: 0.4em;
+}
+
+#elementsGrid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 0.25em;
+    padding: 0.4em;
+    border: 2px solid darkgreen;
+    background-color: var(--window-color);
+}
+
+#elementsGrid.tenElements { grid-template-columns: repeat(8, 1fr); }
+
+#elementsGrid > .interactiveImage {
+    width: 38px;
+    height: 38px;
+    border-radius: 0;
+}
+
+#element2 { grid-column: 18; }
+#elementsGrid.tenElements #element2 { grid-column: 8; }
+#elementsGrid:not(.tenElements) #element5, #element13 { grid-column: 13; }
+
+#element0 {
+    position: absolute;
+    top: 0.65em;
+    left: calc(-38px - 0.65em);
+    opacity: 0;
+    cursor: help;
+    transition: opacity 1s 3s, background-color var(--transition-buttons);
+}
+
+#element0:hover { opacity: 1; }
+
+/* Easier to do this through CSS (extra background value to prevent flashing) */
+.elementType1.awaiting { background: #780000 linear-gradient(45deg, #780000 50%, var(--background-color) 50%); }
+.elementType2.awaiting { background: #a55900 linear-gradient(45deg, #a55900 50%, var(--background-color) 50%); }
+.elementType3.awaiting { background: #0000c1 linear-gradient(45deg, #0000c1 50%, var(--background-color) 50%); }
+.elementType1.created, .elementType1.awaiting:hover { background: #780000; }
+.elementType2.created, .elementType2.awaiting:hover { background: #a55900; }
+.elementType3.created, .elementType3.awaiting:hover { background: #0000c1; }
+
+#strangeStructures {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 0.6em;
+}
+
+#strangeStructures > div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    row-gap: 0.2em;
+}
+
+#strangeStructures > div > div { display: flex; }
+
+#strangeStructures img {
+    background-color: black;
+    border-radius: 0;
+}
+
+#strangeStructures > div > div:first-of-type > p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #006400;
+    border-left: none;
+    padding: 0 0.25em;
+    background-color: black;
+    width: 6em;
+    height: 32px;
+}
+
+#strangeStructures > div > div:last-of-type {
+    position: absolute;
+    flex-direction: column;
+    right: 50%;
+    transform: translateX(50%);
+    background-color: var(--window-color);
+    border: 2px solid var(--window-border);
+    border-radius: 7px;
+    width: max-content;
+    max-width: 90vw;
+    padding: 0.5em 0.6em 0.6em;
+    margin-top: calc(1.9em + 32px);
+    row-gap: 0.2em;
+    z-index: 3;
+}
+
+#strangeStructures ul {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    row-gap: 0.1em;
+}
+
+#strangeStructures li {
+    list-style: inside "− ";
+    line-height: 1.2em;
+}
+
+#strangenessResearch {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid darkgreen;
+    border-radius: 6px;
+    background-color: var(--window-color);
+    padding: 0.5em 0.25em;
+    margin-top: -0.5em;
+    margin-bottom: -0.2em;
+}
+
+#strangenessResearch > section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 2px solid;
+    width: 100%;
+    padding: 0.5em;
+    gap: 0.5em;
+}
+
+#strangenessResearch > section > div { display: flex; }
+
+#strangenessResearch p {
+    display: flex;
+    align-items: center;
+    border: 2px solid;
+    border-left: none;
+    padding-left: calc(3px + 0.25em);
+    padding-right: 0.25em;
+    background-color: var(--background-color);
+    margin-left: -3px;
+    height: 32px;
+    user-select: none;
+}
+
+#milestones {
+    display: flex;
+    flex-wrap: wrap;
+    border-right: 3px solid darkgreen;
+    border-left: 3px solid darkgreen;
+    padding: 0.5em 0;
+    row-gap: 0.5em;
+}
+
+#milestones > div {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid;
+    border-top: 2px solid;
+    padding: 0.5em 0.4em;
+    flex-grow: 1;
+}
+
+#milestones img {
+    cursor: help;
+    border-radius: 3px;
+}
+
+#milestonesProgressArea {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+    border: 3px solid darkgreen;
+    border-top: none;
+    border-bottom: none;
+    padding: 0.3em 0 0.5em;
+}
+
+#milestonesProgressArea > div {
+    border: 1px solid;
+    border-left: none;
+    border-right: none;
+    padding: 0.1em 0.2em;
+}
+
+#milestonesProgressArea span {
+    display: inline-block;
+    text-align: center;
+}
+
+#milestonesProgressArea span { width: 5em; }
+#milestonesProgressArea span:first-of-type { width: 10.8em; }
+
+#resetToggles > h3 { text-align: center; }
+
+#resetToggles > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    height: min-content;
+    margin-top: 0.4em;
+    gap: 0.6em;
+}
+
+#resetToggles section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.3em;
+}
+
+#resetToggles section > div {
+    display: flex;
+    column-gap: 0.3em;
+}
+
+.toggleConfirm {
+    width: 3.3em;
+    height: 1.68em;
+    font-size: 0.82em;
+}
+
+#resetToggles .toggleAuto {
+    width: 5.447em;
+    height: 1.85em;
+    font-size: 0.77em;
+}
+
+#resetToggles .hollowButton {
+    width: 1.45em;
+    height: 1.68em;
+    font-size: 0.82em;
+}
+
+#logoLinks {
+    display: flex;
+    align-items: end;
+    column-gap: 0.6em;
+}
+
+#logoLinks > * {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.18em;
+    border: 2px solid var(--button-border);
+    border-radius: 10px;
+    background-color: var(--window-color);
+    padding: 0.4em 0.3em 0.2em;
+    color: var(--main-text);
+    text-decoration: none;
+    height: min-content;
+    font-size: 1em;
+}
+
+#logoLinks img {
+    background-color: var(--window-color);
+    object-fit: scale-down;
+    height: 25px;
+    width: initial;
+}
+
+#logoLinks > *:hover, #logoLinks > *:hover img { background-color: var(--hollow-hover); }
+
+#saveButtonGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    row-gap: 0.3em;
+}
+
+#saveButtonGroup > div {
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    row-gap: 0.2em;
+}
+
+#saveButtonGroup > div > div {
+    display: flex;
+    column-gap: 0.2em;
+}
+
+#exportReward { margin: -0.2em 0 0.1em; }
+
+#save, #load {
+    width: 5.65em;
+    height: 2em;
+    font-size: 1em;
+}
+
+#load {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#export {
+    height: 2.1em;
+    font-size: 1.2em;
+}
+
+#saveConsole {
+    height: 1.82em;
+    font-size: 0.9em;
+}
+
+.options > ul {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.2em;
+}
+
+.options li {
+    font-size: 0.92em;
+    line-height: 1.63em;
+    list-style: inside "> ";
+    width: max-content;
+}
+
+li input[type = "number"] { width: 3.15em; }
+input.miniInput { width: 1.3em; }
+
+li button {
+    font-size: 0.92em;
+    margin-left: 0.4em;
+}
+
+li .hollowButton {
+    height: 1.72em;
+    padding: 0 0.4em;
+}
+
+.options .windowPopUp { display: inline-block; }
+
+.windowPopUp > div {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    background-color: var(--window-color);
+    border: 2px solid var(--window-border);
+    border-radius: 7px;
+    width: min(24em, 80vw);
+    padding: 0.6em 0.7em 0.7em;
+    margin-top: 0.38em;
+    row-gap: 0.3em;
+    line-height: 1.26em;
+    overflow-wrap: break-word;
+}
+
+.windowPopUp > .focusButton:hover ~ div, .windowPopUp > div:hover,
+.windowPopUp:focus-within > div { display: flex; }
+
+#saveFileNameInput {
+    width: 17.2em;
+    height: 1.82em;
+    font-size: 0.88em;
+    text-align: left;
+}
+
+.dateGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    gap: 0.3em;
+}
+
+.hotkeysGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    gap: 0.3em;
+}
+
+#makeAllHotkey,
+#allStructuresHotkey { grid-column: 1 / 3; }
+
+#autoTogglesUpgrades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.45em;
+    margin-bottom: 1.2em;
+}
+
+#autoTogglesUpgrades > div {
+    display: flex;
+    align-items: center;
+    column-gap: 0.4em;
+}
+
+#autoTogglesUpgrades label { font-size: 0.92em; }
+#autoTogglesUpgrades button { font-size: 0.8em; }
+
+#autoTogglesUpgrades .hollowButton {
+    height: 1.72em;
+    padding: 0 0.4em;
+}
+
+#themeArea > h3 {
+    text-align: center;
+    margin-bottom: 0.3em;
+}
+
+#themeArea > div {
+    display: flex;
+    justify-content: center;
+}
+
+#themeArea > div > div {
+    position: absolute;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 25em;
+    gap: 0.25em;
+}
+
+#themeArea button {
+    width: 7em;
+    border-radius: 10px;
+}
+
+#themeArea > div:focus-within > div { display: flex; }
+#themeArea > div:focus-within > button { clip-path: circle(0); }
+
+#historyMainDiv > section { text-align: center; }
+#historyMainDiv h4 { margin-bottom: 0.24em; }
+
+#historyMainDiv ol {
+    list-style-type: none;
+    overflow-y: overlay;
+    margin: 0.5em 0;
+    padding: 0 1em;
+    height: 7.5em;
+    max-height: 70vh;
+    resize: vertical;
+}
+
+#historyMainDiv input {
+    height: 1.7em;
+    width: 2.6em;
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    row-gap: 0.4em;
+}
+
+.statsWindows {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    gap: 0.5em 1em;
+}
+
+.statsWindows > section {
+    min-width: 6.3em;
+    background-color: var(--window-color);
+    border: 2px solid var(--window-border);
+    border-radius: 0.5em;
+    margin-top: 0.4em;
+    padding: 0.4em 0.6em 0.5em;
+}
+
+.statsWindows p { margin-bottom: 0.08em; }
+
+#strangeAllStats > section { border-color: darkgreen; }
+
+.imageList {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45em;
+    margin-top: 0.1em;
+}
+
+#fakeFooter {
+    visibility: hidden;
+    height: calc(32px + min(3.9vh, 2.4em) + 3.9336em + 0.8vw);
+}
+
+#footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    z-index: 8;
+}
+
+#footerMain {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--footer-color);
+    padding: min(1.3vh, 0.8em) 0;
+    row-gap: min(1.3vh, 0.8em);
+    overflow-x: overlay;
+}
+
+#footerMain > * {
+    display: flex;
+    column-gap: 1em;
+    margin: 0 auto;
+}
+
+#footerMain button {
+    border-radius: 10px;
+    padding: 0 0.7em;
+    min-width: 5em;
+    height: 2em;
+    font-size: 1.01em;
+    background-color: black;
+}
+
+.tabActive { border-color: var(--tab-active) !important; }
+#ElementsTabBtn.tabActive, #upgradeSubtabBtnElements.tabActive { border-color: var(--tab-elements) !important; }
+#strangenessTabBtn.tabActive, #strangenessSubtabBtnMatter.tabActive { border-color: var(--tab-strangeness) !important; }
+
+#footer img { background-color: black; }
+#footerStats > div { display: flex; }
+
+#footerStats p {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border: 2px solid;
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    background-color: black;
+    margin-left: -3px;
+    padding-left: calc(3px + 0.5em);
+    padding-right: 0.25em;
+    white-space: pre;
+    height: 32px;
+    z-index: 1; /* Text color issue */
+}
+
+#footerStats span:last-of-type {
+    display: inline-block;
+    width: 5.2em;
+}
+
+#footer > div:first-child {
+    display: flex;
+    align-items: end;
+    /* justify-content: space-between; */
+    height: 0; /* To click behind it (annoying to make pointer-events work here, but possible) */
+}
+
+#subtabs {
+    display: flex;
+    flex-direction: row;
+    margin-left: 3vw;
+    margin-bottom: 0.4vw;
+    gap: 0.4vw;
+}
+
+#subtabs button {
+    min-width: 5.5em;
+    background-color: var(--background-color);
+    border-radius: 2px;
+    padding: 0 0.6em;
+}
+
+#stageSelect {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    margin-bottom: 0.4vw;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+}
+
+#stageSelect button {
+    background-color: var(--background-color);
+    border-radius: 10px;
+    padding: 0 0.45em;
+    font-size: 0.92em;
+    pointer-events: auto;
+}
+
+#stageSelect > div {
+    display: none;
+    position: absolute;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    gap: 0.4vw;
+    max-width: 40vw;
+    z-index: 1;
+}
+
+#footer button:hover { background-color: var(--footerButton-hover); }
+#stageSelect.active > #currentSwitch { clip-path: circle(0); }
+#stageSelect.active > div { display: flex; }
+
+#phoneHotkeys {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4vw;
+    margin-right: 2vw;
+    margin-left: auto; /* Can be replaced, if display none changed into visibility hidden for subtabs */
+}
+
+#phoneHotkeys button {
+    width: 100%;
+    background-color: var(--background-color);
+    border-radius: 2px;
+    padding: 0 0.6em;
+}
+
+#hideToggle {
+    height: min-content;
+    width: min-content;
+    display: flex;
+    align-items: center;
+    column-gap: 0.25em;
+    background-color: var(--footer-color);
+    padding: 0.2em 0.5em 0;
+    border-radius: 10px 10px 0 0;
+    user-select: none;
+    cursor: pointer;
+}
+
+#hideArrow {
+    background-color: var(--main-text);
+    width: 0.8em;
+    height: 0.8em;
+    clip-path: polygon(0 0, 50% 100%, 100% 0, 50% 25%);
+    pointer-events: none;
+}
+
+@keyframes hideX {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+}
+
+@keyframes hideY {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0); }
+    to { transform: rotate(180deg); }
+}
+
+/* Firefox related pain */
+@supports not (overflow-y: overlay) {
+    body { overflow-y: auto; }
+    #historyMainDiv ol {
+        scrollbar-gutter: stable;
+        overflow-y: auto;
+    }
+    #footerMain { overflow-x: auto; } /* scrollbar-gutter, doesn't work for horizontal scrolls... */
+}
+@supports not selector(::-webkit-scrollbar) {
+    /* There is no way to make themed color with main (html) scrollbar, custom variables are ignored */
+    html { scrollbar-color: gray black; }
+    body { scrollbar-color: var(--input-border) black; }
+}
+
+/* Everything bellow gets edited in changeFontSize function, because rem units are bugged and there isn't any better alternatives */
+@media screen and (max-width: 925px) {
+    #MDMessage1 {
+        display: block;
+        text-align: center;
+        color: var(--green-text);
+        max-width: 90vw;
+    }
+
+    #notifications { max-height: 33vh; }
+    #notifications > p { width: 95vw; }
+
+    .insideTab {
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        gap: 1.2em;
+        margin-top: 1vh;
+    }
+
+    #buildings {
+        row-gap: 0.2em;
+        width: 100vw;
+        min-width: min-content; /* clamp() breaks with that value */
+        max-width: calc(32px + 32.198em);
+    }
+
+    .buyBuilding, #specials > div { column-gap: 0.15em; }
+    .buyBuilding > div:first-of-type, #specials p { flex-direction: column; }
+    .buyBuilding > div:first-of-type { width: 100%; } /* max-width: 19.2em; */
+    .buyBuilding button:first-of-type,
+    .buyBuilding > div > p:first-of-type { width: unset; }
+    .buyBuilding > div > p:first-of-type > span { white-space: nowrap; }
+
+    .buyBuilding > div:last-of-type {
+        flex-shrink: 0;
+        row-gap: 0.16em;
+        width: clamp(11.5em, 38vw, 12.5em);
+        grid-template-areas: "button button" "buy toggle";
+    }
+
+    .buyBuilding > div > div > p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid var(--button-border);
+        border-radius: 3px;
+        height: 1.78em;
+    }
+
+    .buyBuilding .toggleBuilding { margin-left: auto; }
+    .buyBuilding > div > div > div { display: none; }
+    .availableBuilding > div > div > p { border-color: var(--building-afford); }
+
+    .descriptionText > p { max-width: 90vw; }
+
+    #elementsGrid { grid-template-columns: repeat(9, 1fr); }
+    #element2 { grid-column: 9; }
+    #elementsGrid:not(.tenElements) #element5, #element13 { grid-column: 4; }
+    #element0 { display: none; }
+
+    #strangenessResearch {
+        margin-top: -0.2em;
+        margin-bottom: 0;
+    }
+
+    #themeArea > div > div { width: 80vw; }
+
+    #fakeFooter { height: calc(32px + min(3.9vh, 2.4em) + 9.6744em + 3.6vw); }
+    #footerMain > * { column-gap: 0.8em; }
+    #stageSelect { margin-bottom: 0.8vw; }
+
+    #stageSelect > div {
+        gap: 0.8vw;
+        max-width: 60vw;
+    }
+
+    #subtabs {
+        flex-direction: column-reverse;
+        margin-bottom: 0.8vw;
+        gap: 0.8vw;
+    }
+
+    #subtabs button { width: 100%; }
+    #phoneHotkeys { gap: 0.8vw; }
+}
+@media screen and (max-width: 394px) {
+    .buyBuilding { margin-left: calc(-32px - 0.348em); }
+
+    #elementsGrid {
+        gap: 0.15em;
+        padding: 0.25em;
+    }
+
+    #elementsGrid > .interactiveImage {
+        width: 32px;
+        height: 32px;
+        object-fit: scale-down;
+    }
+}
+/* No rules are allowed past this point */
