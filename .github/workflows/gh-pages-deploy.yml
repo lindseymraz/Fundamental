@@ -6,6 +6,18 @@ on:
       - main
 
 jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      - name: Delete Deployment Environment
+        uses: strumwolf/delete-deployment-environment@v3.0.0
+        with:
+          token: ${{ github.token }}
+          environment: github-pages
+          onlyRemoveDeployments: true
+
   gh-pages-deploy:
     name: Deploying to gh-pages
     runs-on: ubuntu-latest

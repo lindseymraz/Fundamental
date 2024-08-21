@@ -5,15 +5,15 @@
   "main": "Code.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/awWhy/Fundamental.git"
+    "url": "git+https://github.com/lindseymraz/Fundamental.git"
   },
   "keywords": [],
-  "author": "awWhy",
+  "author": "lindseymraz",
   "license": "AGPL-3.0 license",
   "bugs": {
-    "url": "https://github.com/awWhy/Fundamental/issues"
+    "url": "https://github.com/lindseymraz/Fundamental/issues"
   },
-  "homepage": "https://github.com/awWhy/Fundamental#readme",
+  "homepage": "https://github.com/lindseymraz/Fundamental#readme",
   "scripts": {
     "lint": "npx eslint Source_TS/*.ts",
     "fix": "npx eslint Source_TS/*.ts --fix",

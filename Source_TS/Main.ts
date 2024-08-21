@@ -528,7 +528,7 @@ try { //Start everything
     } else {
         prepareVacuum(false); //Set buildings values
         updatePlayer(deepClone(playerStart));
-        alertText = `Welcome to 'Fundamental' ${player.version}, a test-project created by awWhy\n(This idle game is not meant to be fast)`;
+        alertText = `Welcome to 'Fundamental' ${player.version}, a mod of the game created by awWhy.\n(This idle game is not meant to be fast)`;
     }
 
     /* Global */
