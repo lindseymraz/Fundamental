@@ -1320,7 +1320,7 @@ export const stageAsyncReset = async() => {
         if (active >= 5) { return void Alert('Awaiting "[26] Iron" Element'); }
         if (active === 4) { return void Alert('Enter Intergalactic space first'); }
         if (active === 3) { return void Alert(`Self sustaining is not yet possible, obtain at least ${format(2.45576045e31)} Mass`); }
-        if (active === 2) { return void Alert(`Look's like more Mass expected, need even more Drops, around ${format(1.19444e29)} in total`); }
+        if (active === 2) { return void Alert(`Looks like more Mass expected, need even more Drops, around ${format(1.19444e29)} in total`); }
         if (active === 1) { return void Alert(`Not enough to form a single Drop of water, need at least ${format(1.67133125e21)} Molecules`); }
     } else {
         if (player.toggles.confirm[0] !== 'None') {

@@ -1105,36 +1105,44 @@ export const format = (input: number | Overlimit, settings = {} as { digits?: nu
     } else if (type === 'time') {
         const inputAbs = Math.abs(input);
         if (inputAbs < 60) {
-            extra = 'seconds';
+            extra = (inputAbs === 1 ? 'second' : 'seconds');
         } else if (inputAbs < 3600) {
             const minutes = Math.trunc(input / 60);
             const seconds = Math.trunc(input - minutes * 60);
-            if (settings.padding === false && seconds === 0) { return `${minutes} minutes`; }
-            return `${minutes} minutes ${seconds} seconds`;
+            const minuteString = (minutes === 1 ? 'minute' : 'minutes');
+            const secondString = (seconds === 1 ? 'second' : 'seconds');
+            if (settings.padding === false && seconds === 0) { return `${minutes} ${minuteString}`; }
+            return `${minutes} ${minuteString} ${seconds} ${secondString}`;
         } else if (inputAbs < 86400) {
             const hours = Math.trunc(input / 3600);
             const minutes = Math.trunc(input / 60 - hours * 60);
-            if (settings.padding === false && minutes === 0) { return `${hours} hours`; }
-            return `${hours} hours ${minutes} minutes`;
+            const hourString = (hours === 1 ? 'hour' : 'hours');
+            const minuteString = (minutes === 1 ? 'minute' : 'minutes');
+            if (settings.padding === false && minutes === 0) { return `${hours} ${hourString}`; }
+            return `${hours} ${hourString} ${minutes} ${minuteString}`;
         } else if (inputAbs < 31556952) {
             const days = Math.trunc(input / 86400);
             const hours = Math.trunc(input / 3600 - days * 24);
-            if (settings.padding === false && hours === 0) { return `${days} days`; }
-            return `${days} days ${hours} hours`;
+            const dayString = (days === 1 ? 'day' : 'days');
+            const hourString = (hours === 1 ? 'hour' : 'hours');
+            if (settings.padding === false && hours === 0) { return `${days} ${dayString}`; }
+            return `${days} ${dayString} ${hours} ${hourString}`;
         } else if (inputAbs < 3.1556952e10) {
             const years = Math.trunc(input / 31556952);
             const days = Math.trunc(input / 86400 - years * 365.2425);
-            if (settings.padding === false && days === 0) { return `${years} years`; }
-            return `${years} years ${days} days`;
+            const yearString = (years === 1 ? 'year' : 'years');
+            const dayString = (days === 1 ? 'day' : 'days');
+            if (settings.padding === false && days === 0) { return `${years} ${yearString}`; }
+            return `${years} ${yearString} ${days} ${dayString}`;
         } else if (inputAbs < 3.1556952e13) {
             input /= 3.1556952e10;
-            extra = 'millenniums';
+            extra = (input === 1 ? 'millennium' : 'millenniums');
         } else if (inputAbs < 3.1556952e16) {
             input /= 3.1556952e13;
-            extra = 'megaannums';
+            extra = (input === 1 ? 'megaannum' : 'megaanums');
         } else {
             input /= 3.1556952e16;
-            extra = 'eons';
+            extra = (input === 1 ? 'eon' : 'eons');
         }
 
         settings.padding = !(settings.padding === false && Math.trunc(input) === input);
