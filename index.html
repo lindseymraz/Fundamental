@@ -24,9 +24,6 @@
                     <button type="button" id="alertCancel" tabindex="1" style="display: none;">Cancel</button>
                 </div>
             </div>
-            <aside id="warpMain" style="display: none;" aria-label="Warp progress" role="progressbar">
-                <p>Calculating warp, remains <span id="warpRemains">0 seconds</span> to calculate (<span id="warpPercentage">100</span>% done)<br aria-hidden="true">(Game is paused)</p>
-            </aside>
         </div>
         <div id="notifications" aria-live="polite"></div>
         <main id="body" style="display: none;">
@@ -816,7 +813,6 @@
                                         <p class="mainText">Escape - <span class="whiteText">cancel close Alert</span></p>
                                         <div class="hotkeysGrid">
                                             <p id="makeAllHotkey" class="redText">M - <span class="whiteText">Make all Structures</span></p>
-                                            <p class="darkvioletText">W - <span class="whiteText">Warp</span></p>
                                             <p id="stageHotkey" class="stageText stage2Unlock">S - <span class="whiteText">Stage reset</span></p>
                                             <p id="dischargeHotkey" class="orangeText stage1Include">D - <span class="whiteText">Discharge</span></p>
                                             <p id="vaporizationHotkey" class="grayText stage2Include">V - <span class="whiteText">Vaporization</span></p>
@@ -863,10 +859,6 @@
                             <div id="autoToggle7">
                                 <label for="toggleAuto7" class="whiteText">Special Researches <span class="mainText">⟶</span></label>
                                 <button type="button" id="toggleAuto7" class="toggleAuto">Auto OFF</button>
-                            </div>
-                            <div>
-                                <label for="offlineWarp" class="whiteText">Consume Offline storage</label>
-                                <button type="button" id="offlineWarp" class="hollowButton" aria-label="Warp (hotkey W)">Warp</button>
                             </div>
                         </section>
                         <div id="themeArea" class="stage2Unlock" aria-hidden="true">
