@@ -3,7 +3,7 @@ import { checkTab } from './Check';
 import { switchTab } from './Update';
 import { buyBuilding, collapseAsyncReset, dischargeAsyncReset, rankAsyncReset, stageAsyncReset, switchStage, toggleSwap, vaporizationAsyncReset } from './Stage';
 import { globalSave } from './Special';
-import { buyAll, pauseGame, timeWarp } from './Main';
+import { buyAll, pauseGame } from './Main';
 
 export const detectHotkey = (check: KeyboardEvent) => {
     if (check.code === 'Tab') {
@@ -46,9 +46,6 @@ export const detectHotkey = (check: KeyboardEvent) => {
         } else {
             if (stringKey === 'm') {
                 buyAll();
-            } else if (stringKey === 'w') {
-                check.preventDefault();
-                void timeWarp();
             } else if (stringKey === 's') {
                 void stageAsyncReset();
             } else if (stringKey === 'd') {

@@ -369,8 +369,6 @@ export const numbersUpdate = () => {
             getId('firstPlayStat').textContent = `${new Date(player.time.started).toLocaleString()} (${format((Date.now() - player.time.started) / 1000, { type: 'time' })} ago)`;
             getId('firstPlay').title = `Total online time is ${format(player.time.online, { type: 'time' })}`;
             getId('stageResetsCount').textContent = format(stage.resets);
-            getId('offlineStat').textContent = format(player.time.offline, { type: 'time', padding: false });
-            getId('maxOfflineStat').textContent = format(maxOfflineTime(), { type: 'time', padding: false });
             if (active === 1) {
                 getId('maxEnergyStat').textContent = format(player.discharge.energyMax);
                 getId('dischargeStat').textContent = format(global.dischargeInfo.total);
@@ -499,7 +497,6 @@ export const visualUpdate = () => {
             const ASR = player.ASR[active];
 
             getId('stageTimeReal').style.display = player.stage.time !== player.time.stage ? '' : 'none';
-            getId('offlineWarning').style.display = player.time.offline > 0 && player.time.offline >= maxOfflineTime() ? '' : 'none';
             if (highest < 2) { getId('toggleBuilding0').style.display = ASR >= 1 ? '' : 'none'; }
             for (let i = 1; i < global.buildingsInfo.maxActive[active]; i++) {
                 getId(`building${i}True`).style.display = buildings[i].current.notEqual(buildings[i as 1].true) ? '' : 'none';

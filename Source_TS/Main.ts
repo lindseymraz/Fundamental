@@ -297,61 +297,11 @@ export const buyAll = () => {
     }
 };
 
-export const timeWarp = async() => {
-    if (global.paused) { return Notify('No warping while game is paused'); }
-    const offline = player.time.offline;
-    if (offline < 60) { return void Alert('Need at least 1 minute in Offline storage to Warp'); }
-    let warpTime: number = Math.min(Number(await Prompt(`How many seconds to Warp?\n(Offline storage is ${format(offline, { digits: 0 })} seconds)\nNot using entire Offline storage will remove additional time from storage without using it (from half an hour up to same amount as Warp time)`, '1800')), offline);
-    if (warpTime < 60 || !isFinite(warpTime)) { return warpTime > 0 ? void Alert('Warp has to be at least 1 minute') : undefined; }
-    if (warpTime < offline) {
-        const remove = Math.max(warpTime, 1800);
-        if (warpTime + remove >= offline) {
-            warpTime = offline;
-        } else { player.time.offline -= remove; }
-    }
-
-    global.paused = true;
-    changeIntervals();
-    getId('alertMain').style.display = 'none';
-    getId('warpMain').style.display = '';
-    getId('blocker').style.display = '';
-    warpMain(warpTime);
-    player.time.offline -= warpTime;
-};
-const warpMain = (warpTime: number, start = warpTime) => {
-    const time = Math.min(600, warpTime);
-    warpTime -= time;
-    try {
-        timeUpdate(time);
-    } catch (error) {
-        warpEnd();
-        const stack = (error as { stack: string }).stack;
-        void Alert(`Warp failed\n${typeof stack === 'string' ? stack.replaceAll(`${window.location.origin}/`, '') : error}`);
-        throw error;
-    }
-    if (warpTime > 0) {
-        setTimeout(warpMain, 0, warpTime, start);
-        getId('warpRemains').textContent = format(warpTime, { type: 'time' });
-        getId('warpPercentage').textContent = format(100 - warpTime / start * 100, { padding: true });
-        if (globalSave.SRSettings[0]) { getId('warpMain').setAttribute('aria-valuetext', `${format(100 - warpTime / start * 100)}% done`); }
-    } else { warpEnd(); }
-    numbersUpdate();
-    visualUpdate();
-};
-const warpEnd = () => {
-    Notify(`Warp ended after ${format(handleOfflineTime(), { type: 'time', padding: false })}`);
-    global.paused = false;
-    changeIntervals();
-    getId('blocker').style.display = 'none';
-    getId('warpMain').style.display = 'none';
-    getId('alertMain').style.display = '';
-};
-
 export const pauseGame = async() => {
     if (global.paused) { return Notify('Game is already paused'); }
     global.paused = true;
     changeIntervals();
-    await Alert("Game is currently paused. Press 'confirm' to unpause it. Time spent here will be moved into Offline storage");
+    await Alert("Game is currently paused. Press 'confirm' to unpause it.");
 
     const offline = handleOfflineTime();
     Notify(`Game was paused for ${format(offline, { type: 'time', padding: false })}`);
@@ -498,7 +448,6 @@ try { //Start everything
             pauseButton.classList.add('hollowButton');
             pauseButton.textContent = 'Pause';
             pauseButton.type = 'button';
-            getId('offlineWarp').after(pauseButton);
             pauseButton.addEventListener('click', pauseGame);
         }
         if (globalSave.toggles[1]) {
@@ -926,7 +875,6 @@ try { //Start everything
     getId('MDToggle0').addEventListener('click', () => toggleSpecial(0, 'mobile', true, true));
     getId('SRToggle0').addEventListener('click', () => toggleSpecial(0, 'reader', true, true));
     getId('reviewEvents').addEventListener('click', replayEvent);
-    getId('offlineWarp').addEventListener('click', timeWarp);
     getId('customFontSize').addEventListener('change', () => changeFontSize(false));
 
     getId('stageResetsSave').addEventListener('change', () => {
